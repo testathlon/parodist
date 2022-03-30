@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.jcabi</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.52.1</version>
+    </parent>
+
+    <groupId>org.testathlon</groupId>
+    <artifactId>parodist</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>parodist</name>
+    <description>A command line util for generating libraries for fake objects</description>
+    <url>https://github.com/testathlon/parodist</url>
+    <inceptionYear>2021</inceptionYear>
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <pmd.version>6.39.0</pmd.version>
+        <picocli.version>4.6.2</picocli.version>
+    </properties>
+    <!--<organization>
+        <name>Cactoos JDBC</name>
+        <url>https://github.com/fabriciofx/cactoos-jdbc</url>
+    </organization>-->
+    <!--<licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.com/fabriciofx/cactoos-jdbc/LICENSE.txt</url>
+            <distribution>site</distribution>
+        </license>
+    </licenses>-->
+    <!--<developers>
+        <developer>
+            <id>1</id>
+            <name>Fabrício Barros Cabral</name>
+            <email>fabriciofx@gmail.com</email>
+            <organization>fabriciofx</organization>
+            <organizationUrl>https://github.com/fabriciofx</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>-3</timezone>
+        </developer>
+    </developers>-->
+    <!--<issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/fabriciofx/cactoos-jdbc/issues</url>
+    </issueManagement>-->
+    <!--<scm>
+        <connection>scm:git:git@github.com:fabriciofx/cactoos-jdbc.git</connection>
+        <developerConnection>
+            scm:git:git@github.com:fabriciofx/cactoos-jdbc.git
+        </developerConnection>
+        <url>https://github.com/fabriciofx/cactoos-jdbc</url>
+        <tag>cactoos-jdbc-0.2</tag>
+    </scm>-->
+    <!--<ciManagement>
+        <system>rultor</system>
+        <url>http://www.rultor.com/s/cactoos-jdbc</url>
+    </ciManagement>-->
+    <!--<distributionManagement>
+        <site>
+            <id>github-pages</id>
+            <url>https://github.com/fabriciofx/cactoos-jdbc</url>
+        </site>
+    </distributionManagement>
+-->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.cactoos</groupId>
+            <artifactId>cactoos</artifactId>
+            <version>0.50</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--<plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>info.picocli</groupId>
+                                <artifactId>picocli-codegen</artifactId>
+                                <version>${picocli.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                        <compilerArgs>
+                            <arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
+                            <arg>-Xlint</arg>
+                            <arg>-Werror</arg>
+                            <arg>-Xlint:-path</arg>
+                            &lt;!&ndash; @see https://stackoverflow.com/questions/44675503/why-safevarargs-doesnt-suppress-the-warning &ndash;&gt;
+                            <arg>-Xlint:-varargs</arg>
+                            &lt;!&ndash; @see https://blogs.oracle.com/darcy/entry/bootclasspath_older_source &ndash;&gt;
+                            <arg>-Xlint:-options</arg>
+                            &lt;!&ndash; @see http://netbeans.org/bugzilla/show_bug.cgi?format=multiple&id=208666 &ndash;&gt;
+                            &lt;!&ndash; this is to avoid a problem with ANTLR and JDK7 &ndash;&gt;
+                            <arg>-Xlint:-classfile</arg>
+                            &lt;!&ndash; ignore APT warnings &ndash;&gt;
+                            <arg>-Xlint:-processing</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>-->
+                <plugin>
+                    <groupId>com.jcabi</groupId>
+                    <artifactId>jcabi-maven-plugin</artifactId>
+                    <dependencies>
+                        <dependency>
+                            <groupId>jakarta.xml.bind</groupId>
+                            <artifactId>jakarta.xml.bind-api</artifactId>
+                            <version>2.3.2</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jaxb</groupId>
+                            <artifactId>jaxb-runtime</artifactId>
+                            <version>2.3.2</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>com.qulice</groupId>
+                    <artifactId>qulice-maven-plugin</artifactId>
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-core</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-jsp</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

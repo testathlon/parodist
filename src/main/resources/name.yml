@@ -1,0 +1,4 @@
+name: Name
+properties:
+  - value: "{{RandomString(3,7)}}"
+    description: "Default name"
